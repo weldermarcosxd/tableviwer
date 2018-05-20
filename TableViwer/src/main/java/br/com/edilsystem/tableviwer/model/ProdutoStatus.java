@@ -2,9 +2,12 @@ package br.com.edilsystem.tableviwer.model;
 
 import java.text.NumberFormat;
 
+import javafx.scene.control.CheckBox;
+
 public class ProdutoStatus {
 
 	private Long id;
+	private CheckBox checked;
 	private String codigo;
 	private String descricao;
 	private String grade;
@@ -19,7 +22,7 @@ public class ProdutoStatus {
 	}
 
 	public ProdutoStatus(long id, String codigo, String descricao, String grade, Integer quantidadeEnviada, Double precoEnviado, Double promocaoEnviado,
-			Integer quantidadeRecebida, Double precoRecebido, Double promocaoRecebido) {
+			Integer quantidadeRecebida, Double precoRecebido, Double promocaoRecebido, CheckBox checkBox) {
 		this.id = id;
 		this.codigo = codigo;
 		this.descricao = descricao;
@@ -30,6 +33,7 @@ public class ProdutoStatus {
 		this.quantidadeRecebida = quantidadeRecebida;
 		this.precoRecebido = precoRecebido;
 		this.promocaoRecebido = promocaoRecebido;
+		this.setChecked(checkBox);
 	}
 
 	/**
@@ -200,7 +204,7 @@ public class ProdutoStatus {
 		return promocaoEnviadoString + "/" + promocaoRecebidoString;
 	}
 	
-	public boolean valid() {
+	public boolean getValid() {
 		
 		if (!getPrecoEnviado().equals(getPrecoRecebido())) {
 			return false;
@@ -210,10 +214,18 @@ public class ProdutoStatus {
 			return false;
 		}
 		
-		if (getQuantidadeEnviada().equals(getQuantidadeRecebida())) {
+		if (!getQuantidadeEnviada().equals(getQuantidadeRecebida())) {
 			return false;
 		}
 		
 		return true;
+	}
+
+	public CheckBox getChecked() {
+		return checked;
+	}
+
+	public void setChecked(CheckBox checked) {
+		this.checked = checked;
 	}
 }
