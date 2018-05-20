@@ -2,13 +2,16 @@ package br.com.edilsystem.tableviwer.view;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import br.com.edilsystem.tableviwer.model.ProdutoStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -43,11 +46,52 @@ public class TableViewer implements Initializable {
 
 	@FXML
 	private TableColumn<ProdutoStatus, String> tblColProm;
+	
+    @FXML
+    private Button btnReSend;
 
+    @FXML
+    private Button btnSelctAll;
+
+    @FXML
+    private Button btnSortByStatus;
+    
 	private ArrayList<ProdutoStatus> proStsList = new ArrayList<ProdutoStatus>();
 	private ObservableList<ProdutoStatus> obsProStsList;
+	
+    @FXML
+    void reSend(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectAllNotOk(ActionEvent event) {
+    	for (ProdutoStatus produtoStatus : obsProStsList) {
+    		if(!produtoStatus.getValid()) {
+    			produtoStatus.getChecked().selectedProperty().set(Boolean.TRUE);
+    		}
+		}
+    }
+    
+    @FXML
+    void sortByStatus(ActionEvent event) {
+    	ObservableList<ProdutoStatus> obsProStsListSorted = FXCollections.observableArrayList(new ArrayList<ProdutoStatus>());
+    	for (ProdutoStatus produtoStatus : obsProStsList) {
+			if(produtoStatus.getValid()) {
+				obsProStsListSorted.add(produtoStatus);
+			}else {
+				obsProStsListSorted.add(0, produtoStatus);
+			}
+		}
+    	obsProStsList = obsProStsListSorted;
+    	tblMain.setItems(obsProStsList);
+    }
 
 	public void feedTable() {
+		
+		tblColId.prefWidthProperty().bind(tblMain.widthProperty().divide(4)); // w * 1/4
+		tblColDesc.prefWidthProperty().bind(tblMain.widthProperty().divide(2)); // w * 1/2
+		tblColCod.prefWidthProperty().bind(tblMain.widthProperty().divide(4)); // w * 1/4
 
 		tblColId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tblColCod.setCellValueFactory(new PropertyValueFactory<>("codigo"));
@@ -84,8 +128,11 @@ public class TableViewer implements Initializable {
 			}
 		});
 
-		proStsList.add(new ProdutoStatus(1L, "00001", "Prod 1", "18", 1, 600.900, 300.900, 1, 600.900, 300.900, new CheckBox()));
-		proStsList.add(new ProdutoStatus(2L, "00002", "Prod 2", "10", 2, 300.900, 150.900, 1, 300.900, 100.900, new CheckBox()));
+		Random random = new Random();
+		
+		for (int i = 0; i < 100; i++) {
+			proStsList.add(new ProdutoStatus(new Long(i + 1), "000" + i, "Prod " + i, String.valueOf(random.nextInt(32)), random.nextInt(10), 600.900, 300.900, random.nextInt(10), 600.900, 300.900, new CheckBox()));
+		}
 
 		obsProStsList = FXCollections.observableArrayList(proStsList);
 		tblMain.setItems(obsProStsList);
