@@ -13,7 +13,12 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		parameters = getParameters().getRaw().get(0);
+		if(getParameters().getRaw().size() > 0) {
+			parameters = getParameters().getRaw().get(0);
+		}else {
+			parameters = "retorno.csv";
+		}
+		
 		Parent root = FXMLLoader.load(getClass().getResource("view/TableViewer.fxml"));
 		
 		Scene scene = new Scene(root);
