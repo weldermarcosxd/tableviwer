@@ -8,8 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
+	public static String parameters;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		parameters = getParameters().getRaw().get(0);
 		Parent root = FXMLLoader.load(getClass().getResource("view/TableViewer.fxml"));
 		
 		Scene scene = new Scene(root);

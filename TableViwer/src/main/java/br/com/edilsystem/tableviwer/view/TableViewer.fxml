@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.edilsystem.tableviwer.view.TableViewer">
    <children>
-      <TableView fx:id="tblMain" layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Menu">
+            <items>
+              <MenuItem fx:id="menuItemReOpen" mnemonicParsing="false" onAction="#reOpen" text="Reabrir">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="menuItemSortByStatus" mnemonicParsing="false" onAction="#sortByStatus" text="Ordenar Situação">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem> 
+                  <MenuItem fx:id="menuItemSelectAllNotOk" mnemonicParsing="false" onAction="#selectAllNotOk" text="Marcar todos com problema">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="menuItemReSend" mnemonicParsing="false" onAction="#reSend" text="Reenviar">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TableView fx:id="tblMain" layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
             <TableColumn fx:id="tblColCheck" prefWidth="25.0" style="-fx-alignment: CENTER-LEFT;" />
           <TableColumn fx:id="tblColId" text="Id" />
@@ -22,8 +54,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnReSend" layoutX="503.0" layoutY="373.0" mnemonicParsing="false" onAction="#reSend" prefHeight="25.0" prefWidth="87.0" text="Reenviar" />
-      <Button fx:id="btnSelctAll" layoutX="328.0" layoutY="373.0" mnemonicParsing="false" onAction="#selectAllNotOk" prefHeight="25.0" prefWidth="167.0" text="Marcar todos com problema" />
-      <Button fx:id="btnSortByStatus" layoutX="152.0" layoutY="373.0" mnemonicParsing="false" onAction="#sortByStatus" prefHeight="25.0" prefWidth="167.0" text="Ordenar por situação" />
+      <ProgressIndicator fx:id="pgrProgresso" layoutX="7.0" layoutY="360.0" prefHeight="25.0" prefWidth="25.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
    </children>
 </AnchorPane>

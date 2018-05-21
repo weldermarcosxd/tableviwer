@@ -3,6 +3,22 @@
   <groupId>TableViwer</groupId>
   <artifactId>TableViwer</artifactId>
   <version>0.0.1</version>
+  <dependencies>
+        <!-- csv -->
+		<dependency>
+			<groupId>net.sf.supercsv</groupId>
+			<artifactId>super-csv</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		
+		<!-- Retran Con -->
+		<dependency>
+			<groupId>retran-con</groupId>
+			<artifactId>retran-con</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+	</dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
