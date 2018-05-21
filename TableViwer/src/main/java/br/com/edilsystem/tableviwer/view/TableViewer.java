@@ -348,7 +348,12 @@ public class TableViewer implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		feedTable(Main.parameters);
+		if (Main.parameters != null){
+			feedTable(Main.parameters);	
+		}else {
+			feedTable("retorno.csv");
+		}
+		
 		if (pgrProgresso.isVisible()) {
 			pgrProgresso.setVisible(false);
 		}
